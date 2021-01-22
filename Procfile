@@ -1,0 +1,1 @@
+web: gunicorn Delivery_Project.wsgi

@@ -36,7 +36,6 @@ def maxWeightAssignmentDP(W, order_detail):
     orders_ids = []
     i = n
     while i>0:
-        print(K[i][W])
         if K[i][W] != K[i-1][W]:
             orders_ids.append(order_detail[i-1]['order_id'])
 
