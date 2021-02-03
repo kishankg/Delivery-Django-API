@@ -1,23 +1,5 @@
 from .partner_vehicle_service import allot_bike,allot_scooty,allot_truck
 
-# maxWeightAssignment returns maximum weight that can dispatched in a 50kg container
-
-# Recursion
-# def maxWeightAssignment(currweight, index, order_detail, currorder_list,maxweight,order_list):
-#     if index==len(order_detail):
-#         return
-#     if currweight>50:
-#         return
-#     if currweight>maxweight:
-#         maxweight = currweight
-#         order_list[:] = currorder_list[:]
-    
-#     maxWeightAssignment(currweight,index+1,order_detail,currorder_list,0,order_list)
-#     neworder_list = currorder_list[:]
-#     neworder_list.append(order_detail[index]['order_id'])
-#     newweight = currweight + order_detail[index]['order_weight']
-#     maxWeightAssignment(newweight,index+1,order_detail,neworder_list,0,order_list)
-
 def maxWeightAssignmentDP(W, order_detail): 
     n = len(order_detail)
     K = [[0 for x in range(W + 1)] for x in range(n + 1)] 

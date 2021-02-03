@@ -9,39 +9,70 @@ class TestViews(TestCase):
 
     def setup(self):
         self.client = Client()
+    
+    def test_data(self):
+        Vehicle_Class.objects.bulk_create([
+            Vehicle_Class(vehicle_type='Bike', capacity=30, first_slot=True, second_slot=True, third_slot=True, fourth_slot=False),
+            Vehicle_Class(vehicle_type='Scooty', capacity=50, first_slot=True, second_slot=True, third_slot=True, fourth_slot=False),
+            Vehicle_Class(vehicle_type='Truck', capacity=100, first_slot=False, second_slot=True, third_slot=True, fourth_slot=True)
+        ])
+
+        vc1 = Vehicle_Class.objects.get(vehicle_type='Bike')
+        vc2 = Vehicle_Class.objects.get(vehicle_type='Scooty')
+        vc3 = Vehicle_Class.objects.get(vehicle_type='Truck')
+
+        Vehicle_Detail.objects.bulk_create([
+            Vehicle_Detail(registration_number="KA01AB1234",available=True,vehicle_class=vc1),
+            Vehicle_Detail(registration_number="KA01AB1235",available=True,vehicle_class=vc1),
+            Vehicle_Detail(registration_number="KA01AB1236",available=True,vehicle_class=vc1),
+            Vehicle_Detail(registration_number="KA01AB1237",available=True,vehicle_class=vc2),
+            Vehicle_Detail(registration_number="KA01AB1238",available=True,vehicle_class=vc2),
+            Vehicle_Detail(registration_number="KA01AB1239",available=True,vehicle_class=vc3),
+        ])
+
+        Delivery_Partner.objects.bulk_create([
+            Delivery_Partner(dl_number= "DL01382479",name= "Gopal1",contact= 7897129,email= "gopal1@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False),
+            Delivery_Partner(dl_number= "DL01382480",name= "Gopal2",contact= 7897130,email= "gopal2@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False),
+            Delivery_Partner(dl_number= "DL01382481",name= "Gopal3",contact= 7897131,email= "gopal3@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False),
+            Delivery_Partner(dl_number= "DL01382482",name= "Gopal4",contact= 7897132,email= "gopal4@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False),
+            Delivery_Partner(dl_number= "DL01382483",name= "Gopal5",contact= 7897133,email= "gopal5@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= True),
+        ])
+
 
     def test_project_list_post(self):
+        TestViews.test_data(self)
+        
 
-        vc1 = Vehicle_Class(vehicle_type='Bike', capacity=30, first_slot=True, second_slot=True, third_slot=True, fourth_slot=False)
-        vc1.save()
-        vc2 = Vehicle_Class(vehicle_type='Scooty', capacity=50, first_slot=True, second_slot=True, third_slot=True, fourth_slot=False)
-        vc2.save()
-        vc3 = Vehicle_Class(vehicle_type='Truck', capacity=100, first_slot=False, second_slot=True, third_slot=True, fourth_slot=True)
-        vc3.save()
+        # vc1 = Vehicle_Class(vehicle_type='Bike', capacity=30, first_slot=True, second_slot=True, third_slot=True, fourth_slot=False)
+        # vc1.save()
+        # vc2 = Vehicle_Class(vehicle_type='Scooty', capacity=50, first_slot=True, second_slot=True, third_slot=True, fourth_slot=False)
+        # vc2.save()
+        # vc3 = Vehicle_Class(vehicle_type='Truck', capacity=100, first_slot=False, second_slot=True, third_slot=True, fourth_slot=True)
+        # vc3.save()
 
-        vd1 = Vehicle_Detail(registration_number="KA01AB1234",available=True,vehicle_class=vc1)
-        vd1.save()
-        vd2 = Vehicle_Detail(registration_number="KA01AB1235",available=True,vehicle_class=vc1)
-        vd2.save()
-        vd3 = Vehicle_Detail(registration_number="KA01AB1236",available=True,vehicle_class=vc1)
-        vd3.save()
-        vd4 = Vehicle_Detail(registration_number="KA01AB1237",available=True,vehicle_class=vc2)
-        vd4.save()
-        vd5 = Vehicle_Detail(registration_number="KA01AB1238",available=True,vehicle_class=vc2)
-        vd5.save()
-        vd6 = Vehicle_Detail(registration_number="KA01AB1239",available=True,vehicle_class=vc3)
-        vd6.save()
+        # vd1 = Vehicle_Detail(registration_number="KA01AB1234",available=True,vehicle_class=vc1)
+        # vd1.save()
+        # vd2 = Vehicle_Detail(registration_number="KA01AB1235",available=True,vehicle_class=vc1)
+        # vd2.save()
+        # vd3 = Vehicle_Detail(registration_number="KA01AB1236",available=True,vehicle_class=vc1)
+        # vd3.save()
+        # vd4 = Vehicle_Detail(registration_number="KA01AB1237",available=True,vehicle_class=vc2)
+        # vd4.save()
+        # vd5 = Vehicle_Detail(registration_number="KA01AB1238",available=True,vehicle_class=vc2)
+        # vd5.save()
+        # vd6 = Vehicle_Detail(registration_number="KA01AB1239",available=True,vehicle_class=vc3)
+        # vd6.save()
 
-        dp1 = Delivery_Partner(dl_number= "DL01382479",name= "Gopal1",contact= 7897129,email= "gopal1@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False)
-        dp1.save()
-        dp2 = Delivery_Partner(dl_number= "DL01382480",name= "Gopal2",contact= 7897130,email= "gopal2@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False)
-        dp2.save()
-        dp3 = Delivery_Partner(dl_number= "DL01382481",name= "Gopal3",contact= 7897131,email= "gopal3@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False)
-        dp3.save()
-        dp4 = Delivery_Partner(dl_number= "DL01382482",name= "Gopal4",contact= 7897132,email= "gopal4@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False)
-        dp4.save()
-        dp5 = Delivery_Partner(dl_number= "DL01382483",name= "Gopal5",contact= 7897133,email= "gopal5@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= True)
-        dp5.save()
+        # dp1 = Delivery_Partner(dl_number= "DL01382479",name= "Gopal1",contact= 7897129,email= "gopal1@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False)
+        # dp1.save()
+        # dp2 = Delivery_Partner(dl_number= "DL01382480",name= "Gopal2",contact= 7897130,email= "gopal2@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False)
+        # dp2.save()
+        # dp3 = Delivery_Partner(dl_number= "DL01382481",name= "Gopal3",contact= 7897131,email= "gopal3@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False)
+        # dp3.save()
+        # dp4 = Delivery_Partner(dl_number= "DL01382482",name= "Gopal4",contact= 7897132,email= "gopal4@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= False)
+        # dp4.save()
+        # dp5 = Delivery_Partner(dl_number= "DL01382483",name= "Gopal5",contact= 7897133,email= "gopal5@grofers.com",available= True,two_wheeler= True,heavy_motor_vehicle= True)
+        # dp5.save()
 
         
         data = [

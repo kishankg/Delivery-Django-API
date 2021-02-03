@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Delivery_Partner,Vehicle_Class,Vehicle_Detail,Pending_Order,Delivery_Detail,Delivered_Order
 
-#Serializers allow complex data such as querysets and model instances to be converted to native Python
+#Serializers allow complex data such as querysets and model instances to be converted to native Python datatypes
 
 
 #defining serializers for all models
